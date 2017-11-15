@@ -6,6 +6,9 @@ public class ShipController : MonoBehaviour {
 
 	private Rigidbody shipRigidbody;
 
+	private static bool moving = false;
+	private static Transform destination;
+
 	public float RotationSpeed = .1f;
 
 	// Use this for initialization
@@ -15,9 +18,11 @@ public class ShipController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		GameObject target = GameObject.FindGameObjectWithTag("Destination");
 
-		Vector3 relativePos = target.transform.position - transform.position;
+		if (!moving)
+			return;
+
+		Vector3 relativePos = destination.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos);
         
 		if (Quaternion.Angle(transform.rotation, rotation) >= 0.1f)
@@ -29,7 +34,7 @@ public class ShipController : MonoBehaviour {
 				 relativePos.y >= 5 || 
 				 relativePos.z >= 5)
 		{
-			Debug.Log("moving, velocity: " + shipRigidbody.velocity.magnitude);
+			//Debug.Log("moving, velocity: " + shipRigidbody.velocity.magnitude);
 			
 			if (shipRigidbody.velocity.magnitude < 1f)
 			{
@@ -44,5 +49,11 @@ public class ShipController : MonoBehaviour {
 			//Debug.Log("stopped");
 			shipRigidbody.velocity = Vector3.zero;
 		}
+	}
+
+	public static void SetDestination(Transform targetTransform)
+	{
+		destination = targetTransform;
+		moving = true;
 	}
 }
