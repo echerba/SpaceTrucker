@@ -54,8 +54,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\NavigationMenuController.cs" />
      <Compile Include="Assets\Scripts\CockpitCameraController.cs" />
+     <Compile Include="Assets\Scripts\NavigationMenuController.cs" />
      <Compile Include="Assets\Scripts\ShipController.cs" />
      <Compile Include="Assets\Scripts\SpaceStationController.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
