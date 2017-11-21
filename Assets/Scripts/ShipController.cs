@@ -11,9 +11,13 @@ public class ShipController : MonoBehaviour {
 
 	public float RotationSpeed = .1f;
 
+	public float ShipAcceleration = 2f;
+	
+	public float ShipMaxSpeed = 10f;
+
 	// Use this for initialization
 	void Start () {
-		shipRigidbody = GetComponentInChildren<Rigidbody>();	
+		shipRigidbody = GetComponent<Rigidbody>();	
 	}
 	
 	// Update is called once per frame
@@ -36,9 +40,9 @@ public class ShipController : MonoBehaviour {
 		{
 			//Debug.Log("moving, velocity: " + shipRigidbody.velocity.magnitude);
 			
-			if (shipRigidbody.velocity.magnitude < 1f)
+			if (shipRigidbody.velocity.magnitude < ShipMaxSpeed)
 			{
-				Vector3 force = transform.forward * .01f;
+				Vector3 force = transform.forward * ShipAcceleration;
 				shipRigidbody.AddForce(force, ForceMode.Force);
 			}
 
